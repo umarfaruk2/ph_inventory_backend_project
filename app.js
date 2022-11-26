@@ -19,6 +19,6 @@ connectDB(database_url);
 app.get('/', (req, res) => {
     res.send('new app');
 })
-app.use('/', productRouter);
+app.use('/api/v1/product', productRouter);
 
 app.listen(port, () => console.log('app is ruing....'));

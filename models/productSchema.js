@@ -66,6 +66,16 @@ const productSchema = new mongoose.Schema({
     timestamps: true
 })
 
+productSchema.pre('save', function(next) {
+    console.log('Before saving data');
+    next();
+})
+
+productSchema.post('save', function(doc, next) {
+    console.log('After saving data');
+    next();
+})
+
 const productModel = mongoose.model("Product", productSchema);
 
 export default productModel;
