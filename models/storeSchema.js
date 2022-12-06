@@ -11,8 +11,7 @@ const storeSchema = new mongoose.Schema({
         enum: {
             values: ["dhaka", "chittagong"],
             message: "{VALUE} is not a valid name"
-        },
-
+        }
     },
     description: String,
     status: {

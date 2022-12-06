@@ -2,7 +2,12 @@ import mongoose from "mongoose";
 import validator from "validator";
 const { ObjectId } = mongoose.Schema.Types;
 
-const productSchema = new mongoose.Schema({
+const stockSchema = new mongoose.Schema({
+    productId: {
+        type: ObjectId,
+        ref: "Product",
+        required: true
+    },
     name: {
         type: String,
         required: [true, "Please provide a name for this product."],
@@ -43,6 +48,16 @@ const productSchema = new mongoose.Schema({
             message: 'Please provide valid image urls'
         }
     }],
+    price: {
+        type: Number,
+        required: true,
+        min: [0, "product price can't be negative"]
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        min: [0, "product quantity can't be negative"]
+    },
     category: {
         type: String,
         required: true
@@ -56,6 +71,42 @@ const productSchema = new mongoose.Schema({
             type: ObjectId,
             ref: "Brand",
             required: true
+        }
+    },
+    status: {
+        type: String,
+        required: true,
+        enum: {
+            values: ['in-stock', 'out-of-stock', 'discontinued'],
+            message: "{VALUE} is not a valid status"
+        }
+    },
+    store: {
+        name: {
+            type: String,
+            trim: true,
+            required: [true, "Please provide a brand name"],
+            lowerCase: true,
+            enum: {
+                values: ["dhaka", "chittagong"],
+                message: "{VALUE} is not a valid name"
+            }
+        },
+        id: {
+            type: ObjectId,
+            ref: "Store",
+            required: true
+        }
+    },
+    suppliedBy: {
+        name: {
+            type: String,
+            trim: true,
+            required: [true, 'Please provide a supplier name'],
+        },
+        id: {
+            type: ObjectId,
+            ref: "Supplier"
         }
     }
 }, {
@@ -72,6 +123,6 @@ const productSchema = new mongoose.Schema({
 //     next();
 // })
 
-const productModel = mongoose.model("Product", productSchema);
+const stockModel = mongoose.model("Stock", stockSchema);
 
-export default productModel;
+export default stockModel;
