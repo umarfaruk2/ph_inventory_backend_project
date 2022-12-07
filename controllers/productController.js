@@ -54,3 +54,15 @@ export const productBulkUpdateController = async  (req, res, next) => {
         });
     }
 }
+
+// file upload
+export const fileUpload = async (req, res, next) => {
+    try {
+        res.status(200).json(req.file);
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            error: error.message
+        });
+    }
+}

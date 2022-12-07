@@ -6,6 +6,7 @@ import productRouter from './routes/productRoute.js';
 import brandRoute from './routes/brandRoute.js';
 import categoryRoute from './routes/categoryRoute.js';
 import storeRoute from './routes/storeRoute.js';
+import supplierRoute from './routes/supplierRoute.js';
 dotenv.config();
 const database_url = process.env.DATABASE_URL;
 const port = process.env.PORT || 8000;
@@ -26,5 +27,6 @@ app.use('/api/v1/product', productRouter);
 app.use('/api/v1/brand', brandRoute);
 app.use('/api/v1/category', categoryRoute);
 app.use('/api/v1/store', storeRoute);
+app.use('/api/v1/supplier', supplierRoute);
 
 app.listen(port, () => console.log('app is ruing....'));
