@@ -1,16 +1,16 @@
 import express from 'express';
 import { stockGetByIdController, stockGetController, stockPostController, stockUpdateController } from '../controllers/StockController.js';
-const router = express.Router();
+const stockRouter = express.Router();
 
 
 // router.route('/bulk-update').patch(productBulkUpdateController)
 
-router.route('/')
+stockRouter.route('/')
 .get(stockGetController)
 .post(stockPostController)
 
-router.route('/:id')
+stockRouter.route('/:id')
 .get(stockGetByIdController)
 .patch(stockUpdateController)
 
-export default router;
+export default stockRouter;

@@ -12,7 +12,7 @@ const supplierSchema = new mongoose.Schema({
         lowercase: true
     },
     email: {
-        type: Sting,
+        type: String,
         validate: [validator.isEmail, "provide a valid email"],
         trim: true,
         lowercase: true,
@@ -41,7 +41,7 @@ const supplierSchema = new mongoose.Schema({
         }
     }],
     emergencyContactNumber: {
-        type: Sting,
+        type: String,
         required: [true, 'Please provide a emergency contact number'],
         validate: {
             validator: (value) => {
@@ -55,11 +55,11 @@ const supplierSchema = new mongoose.Schema({
         required: [true, 'Please provide you trade licence number']
     },
     presentAddress: {
-        type: Sting,
+        type: String,
         required: [true, 'Please provide your present address']
     },
     permanentAddress: {
-        type: Sting,
+        type: String,
         required: [true, 'Please provide your permanent address']
     },
     location: {
