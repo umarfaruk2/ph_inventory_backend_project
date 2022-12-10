@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import userModel from "../models/userSchema.js";
 import { genToken } from "../utility/jwt_token.js";
 
+// user signup
 export const signUpController = async (req, res, next) => {
     try {
         const user = await signUpService(req.body);
@@ -21,7 +22,7 @@ export const signUpController = async (req, res, next) => {
     }
 }
 
-
+// user login
 export const loginController = async (req, res, next) => {
     try {
         const { email, password } = req.body;
@@ -72,4 +73,15 @@ export const loginController = async (req, res, next) => {
     }
 }
 
-
+// get my info
+export const getMyInfo = async (req, res, next) => {
+    try {
+        const user = await loginService(req.user?.email);
+        res.status(200).json({
+            success: 'success',
+            data: user
+        });
+    } catch (error) {
+        next(error);
+    }
+}

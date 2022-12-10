@@ -1,15 +1,14 @@
-import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import express from 'express';
 import connectDB from './config/dbConnetion.js';
-import productRouter from './routes/productRoute.js';
 import brandRoute from './routes/brandRoute.js';
 import categoryRoute from './routes/categoryRoute.js';
+import productRouter from './routes/productRoute.js';
+import stockRouter from './routes/stockRoute.js';
 import storeRoute from './routes/storeRoute.js';
 import supplierRoute from './routes/supplierRoute.js';
-import stockRouter from './routes/stockRoute.js';
-import signUpRoute from './routes/signUpRoute.js';
-import loginRoute from './routes/loginRoute.js';
+import userRoute from './routes/userRoute.js';
 dotenv.config();
 const database_url = process.env.DATABASE_URL;
 const port = process.env.PORT || 8000;
@@ -32,8 +31,7 @@ app.use('/api/v1/category', categoryRoute);
 app.use('/api/v1/store', storeRoute);
 app.use('/api/v1/supplier', supplierRoute);
 app.use('/api/v1/stock', stockRouter);
-app.use('/api/v1/sign-up', signUpRoute);
-app.use('/api/v1/login', loginRoute);
+app.use('/api/v1/user', userRoute);
 
 // 404 error handling
 app.use((req, res, next) => {
